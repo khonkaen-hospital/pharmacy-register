@@ -15,6 +15,7 @@ import { HomeModule } from './home/home.module';
 import { DetailModule } from './detail/detail.module';
 
 import { AppComponent } from './app.component';
+import { AppConfig } from '../environments/environment';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -40,7 +41,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       }
     })
   ],
-  providers: [],
+  providers: [{ provide: 'API_URL', useValue: AppConfig.apiUrl }],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

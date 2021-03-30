@@ -1,7 +1,39 @@
 <div class="container">
-  <h1 class="title">
-    {{ 'PAGES.HOME.TITLE' | translate }}
-  </h1>
 
-  <a routerLink="/detail">{{ 'PAGES.HOME.GO_TO_DETAIL' | translate }}</a>
+  <header>
+    EZiosk
+  </header>
+  <div><img style="width:300px" src="./assets/userscan.png" alt=""></div>
+  <h1 *ngIf="isManual" class="title">กรุณากรอกหมายเลขประจำตัวผู้ป่วย เพื่อลงทะเบียนรับยา</h1>
+  <h1 *ngIf="!isManual" class="title">กรุณาสแกนบาร์โค้ด เพื่อลงทะเบียนรับหมายเลขรับยา</h1>
+
+
+  <div>
+    <input [(ngModel)]="barcode" class="input-barcode" #input (keypress)="registerQueue($event)" type="text">
+  </div>
+
+
+  <div *ngIf="isManual" class="flex-container">
+    <div (click)="onNumberClick('1')">1</div>
+    <div (click)="onNumberClick('2')">2</div>
+    <div (click)="onNumberClick('3')"> 3</div>
+    <div (click)="delClick()"> Del</div>
+
+    <div (click)="onNumberClick('4')">4</div>
+    <div (click)="onNumberClick('5')">5</div>
+    <div (click)="onNumberClick('6')">6</div>
+    <div (click)="onNumberClick('0')">0</div>
+
+    <div (click)="onNumberClick('7')">7</div>
+    <div (click)="onNumberClick('18')">8</div>
+    <div (click)="onNumberClick('9')">9</div>
+    <div (click)="onConfirme()" [ngClass]="{'btn-submit': isReady}" class="btn-submit">OK</div>
+  </div>
+
+  <div class="link">
+    <a *ngIf="!isManual" class="btn" (click)="manualInput()"> กรอกหมายเลขประจำตัวผู้ป่วยเอง </a>
+    <a *ngIf="isManual" style="width: 520px;" class="btn" (click)="manualInput()"> สแกนบาร์โค้ด </a>
+    <!-- <a class="btn" routerLink="/detail">ตรวจสอบสถานะการรับยา</a> -->
+  </div>
+
 </div>
