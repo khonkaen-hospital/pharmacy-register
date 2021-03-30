@@ -39,10 +39,8 @@ function createWindow(): BrowserWindow {
     });
     win.loadURL('http://localhost:4200');
 
-    const list = win.webContents.getPrinters();
-    console.log("All printer available are ", list);
-
-    PrintSlip('10.3.42.77');
+    // const list = win.webContents.getPrinters();
+    // console.log("All printer available are ", list);
 
   } else {
     win.loadURL(url.format({

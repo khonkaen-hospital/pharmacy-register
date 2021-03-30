@@ -4,6 +4,8 @@ import { QueueService } from '../shared/queue.service';
 import { ElectronService } from '../core/services/electron/electron.service';
 import { BehaviorSubject } from 'rxjs';
 
+const remote = window.require('@electron/remote');
+const { PosPrinter } = remote.require("electron-pos-printer");
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -34,6 +36,34 @@ export class HomeComponent implements OnInit {
       console.log(value);
       this.isReady = value === true ? true : false;
     });
+
+    const webContents = remote.getCurrentWebContents();
+    const printers = webContents.getPrinters();
+    console.log('printers', printers);
+
+    const options = {
+      preview: false, // Preview in window or print
+      width: '140px', //  width of content body
+      margin: "0 0 0 0", // margin of content body
+      copies: 1, // Number of copies to print
+      printerName: '', // printerName: string, check it at webContent.getPrinters()
+      timeOutPerLine: 400,
+      silent: true,
+    };
+    const data = [{
+      type: "text",
+      value: "ทดสอบครับ",
+      style: `text-align:center;`,
+      css: { "font-size": "12px", "font-family": "sans-serif" },
+    }];
+
+    PosPrinter.print(data, options)
+      .then(() => { })
+      .catch((error) => {
+        console.error(error);
+      });
+
+
   }
 
   registerQueue(event: KeyboardEvent | any): void {
