@@ -16,6 +16,7 @@ import { DetailModule } from './detail/detail.module';
 
 import { AppComponent } from './app.component';
 import { AppConfig } from '../environments/environment';
+import { PrintComponent } from './print/print.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -23,7 +24,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PrintComponent],
   imports: [
     BrowserModule,
     FormsModule,

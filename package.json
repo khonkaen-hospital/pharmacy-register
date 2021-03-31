@@ -42,7 +42,10 @@
   },
   "dependencies": {
     "@electron/remote": "1.0.4",
-    "electron-pos-printer": "^1.2.4"
+    "@techiediaries/ngx-qrcode": "^9.1.0",
+    "electron-pos-printer": "^1.2.4",
+    "jsbarcode": "^3.11.3",
+    "qrcode": "^1.4.4"
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "11.1.1",
