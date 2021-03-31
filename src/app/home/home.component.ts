@@ -123,14 +123,16 @@ export class HomeComponent implements OnInit {
       printBackground: true,
       color: false,
       margin: {
-        marginType: 'printableArea'
+        marginType: 'printableArea',
+        top:0,
+        bottom:0
       },
       landscape: false,
       pagesPerSheet: 1,
       collate: false,
       copies: 1,
-      header: 'Header of the Page',
-      footer: 'Footer of the Page'
+      header: '',
+      footer: ''
     };
     const win = new BrowserWindow({
       show: true,
@@ -151,7 +153,11 @@ export class HomeComponent implements OnInit {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Eziosk</title>
       <style>
+        @page {
+          margin: 0;
+        }
         body{
+          margin-top:0;
           text-align:center;
         }
         #invoice-POS .sub-header{
@@ -159,7 +165,7 @@ export class HomeComponent implements OnInit {
         }
 
         #invoice-POS {
-          padding: 2mm;
+          padding: 0px 2mm 2mm 2mm;
           margin: 0 auto;
           background: #FFF;
         }
@@ -198,7 +204,7 @@ export class HomeComponent implements OnInit {
 
         #invoice-POS p {
           font-size: 0.7em;
-          color: #666;
+          color: #222;
           line-height: 1.2em;
         }
 
@@ -277,7 +283,8 @@ export class HomeComponent implements OnInit {
         }
 
         #invoice-POS #legalcopy {
-          margin-top: 5mm;
+          margin-top: 0;
+          margin-bottom: 20px;
         }
       </style>
     </head>
@@ -320,8 +327,7 @@ export class HomeComponent implements OnInit {
           <!--End Table-->
 
           <div id="legalcopy">
-
-            <img style="width:100%" src="${qr}" />
+            <img style="width:150px" src="${qr}" />
           </div>
 
         </div>
